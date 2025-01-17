@@ -1,24 +1,8 @@
 ---
-
+import Base from '../layouts/base.astro'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Accueil</title>
-	</head>
-	<body>
-		<header>
-			<nav>
-                <a href="/">Accueil</a>
-                <a href="/offres">Offres</a>
-			</nav>
-		</header>
-		<main>
-			<h1>Bienvenue sur la page d'accueil</h1>
-		</main>
-	</body>
-	</html>
+<Base titre="accueil">
+	<h1 class="font-bold text-blue-900">Accueil</h1>
+</Base>
+
