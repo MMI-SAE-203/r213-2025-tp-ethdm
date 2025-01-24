@@ -1,5 +1,5 @@
 ---
-const offres = [
+const item = [
     {
         "adresse": "2821 Lake Sevilla, Palm Harbor, TX",
         "favori": true,
@@ -38,7 +38,7 @@ const offres = [
 ]
 ---
 <ul>
-{offres.map((item) => (
+{item.map((item) => (
     <li class="mb-4 border p-4 bg-purple-100">
         <h2 class="text-xl font-semibold">{item.nomMaison}</h2>
         <p class="text-gray-600">Adresse : {item.adresse}</p>

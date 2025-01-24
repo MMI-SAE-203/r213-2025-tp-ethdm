@@ -1,9 +1,27 @@
 ---
 import Base from '../Layouts/Base.astro'
-
+import Card from '../components/Card.astro'
+const {...item} = Astro.props;
+const visible = true;
 ---
 
 
   <Base titre="Offres">
 	<h1 class="font-bold text-blue-900">Offres</h1>
+	
+	<div x-data="{ showFavorites: false }">
+		<button @click="showFavorites = !showFavorites">
+			<span x-show="!showFavorites">Afficher les favoris</span>
+			<span x-show="showFavorites">Afficher tout</span>
+		</button>
+	
+		<div x-show="!showFavorites">
+			{item.map((item) => <Card {...item} />)}
+		</div>
+		<div x-show="showFavorites">
+				{item.map((item) => item.favori && <Card {...item} />)}
+			</div>
+			{item.map((item) => item.favori && <Card {...item} />)}
+		</div>
+	</div>
 </Base>
