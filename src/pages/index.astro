@@ -1,8 +1,15 @@
 ---
-import Base from '../layouts/base.astro'
+import Base from '../Layouts/Base.astro'
 ---
 
 <Base titre="accueil">
 	<h1 class="font-bold mt-10 text-blue-900">Accueil</h1>
 </Base>
 
+<div x-data="{ open: false }">
+	<button @click="open = ! open">Bon</button>
+ 
+	<div x-show="open" x-transition>
+		jour 👋
+	</div>
+</div>
