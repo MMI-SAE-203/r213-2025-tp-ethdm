@@ -1,63 +1,29 @@
 ---
-import Base from '../Layouts/Base.astro'
-import Card from '../components/Card.astro'
-const item = [
-    {
-        "adresse": "2821 Lake Sevilla, Palm Harbor, TX",
-        "favori": true,
-        "id": "64l3n8nar836i5j",
-        "nbChambres": 4,
-        "nbSdb": 2,
-        "nomMaison": "Beverly Springfield",
-        "prix": 2700,
-        "surface": 45,
-        "imgUrl": "image1.png"
-    },
+import Card from '../components/Card.astro';
+import Base from '../Layouts/Base.astro';
+import { getOffres } from '../js/backend.mjs';
 
-    {
-        "adresse": "2699 Green Valley, Highland Lake",
-        "favori": true,
-        "id": "lo831zeg10hpm9y",
-        "nbChambres": 4,
-        "nbSdb": 2,
-        "nomMaison": "Palm Harbor",
-        "prix": 2095,
-        "surface": 42,
-        "imgUrl": "image2.png"
-    },
-
-    {
-        "adresse": "909 Woodland St, Michigan, IN",
-        "favori": false,
-        "id": "s1zuhj19x8eb242",
-        "nbChambres": 4,
-        "nbSdb": 3,
-        "nomMaison": "Faulkner Ave",
-        "prix": 4550,
-        "surface": 80,
-        "imgUrl": "image3.png"
-    },
-]
-const visible = true;
+const offres = await getOffres();
 ---
 
+<Base titre="offres">
+    <div class="flex justify-center text-4xl mt-10">
+        <h1 class="font-bold uppercase text-purple-100">Nos offres</h1>
+    </div>
+    <div x-data="{ showFavorites: false }">
+    
+        <div x-show="showFavorites" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-10 mt-10">
+            {offres.map((item) => <Card {...item} />)}
+        </div>
+        <div x-show="!showFavorites" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-10 mt-10">
+            {offres.map((item) => item.favori && <Card {...item} />)}
+        </div>
+        <div class="flex justify-center">
+            <button @click="showFavorites = !showFavorites" class="mb-4 p-2 bg-purple-100 text-blue-900 rounded mt-5">
+            <span x-show="!showFavorites">Afficher les favoris</span>
+            <span x-show="showFavorites">Afficher tout</span>    
+            </button> 
+        </button>
+    </div>
 
-  <Base titre="Offres">
-	<h1 class="font-bold text-blue-900">Offres</h1>
-	
-	<div x-data="{ showFavorites: false }">
-		<button @click="showFavorites = !showFavorites">
-			<span x-show="!showFavorites">Afficher les favoris</span>
-			<span x-show="showFavorites">Afficher tout</span>
-		</button>
-	
-		<div x-show="!showFavorites">
-			{item.map((item) => <Card {...item} />)}
-		</div>
-		<div x-show="showFavorites">
-				{item.map((item) => item.favori && <Card {...item} />)}
-			</div>
-			{item.map((item) => item.favori && <Card {...item} />)}
-		</div>
-	</div>
 </Base>
