@@ -1,0 +1,16 @@
+---
+import { getOffresBySurface } from "../../../js/backend.mjs";
+import Card from '../../../components/Card.astro';
+import Base from '../../../Layouts/Base.astro';
+const { surface } = Astro.params;
+
+const offres = await getOffresBySurface(surface);
+console.log(offres);
+---
+
+<Base>
+    {
+        offres.map((offre) => <Card {...offre} />)
+    }
+
+</Base>
