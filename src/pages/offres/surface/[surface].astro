@@ -9,8 +9,10 @@ console.log(offres);
 ---
 
 <Base>
+<h1 class="font-bold mt-10 text-blue-900">Nos offres de {surface}m² et plus</h1>
+    <div class="flex justify-center text-4xl mt-10 space-x-5">
     {
         offres.map((offre) => <Card {...offre} />)
     }
-
+    </div>
 </Base>
